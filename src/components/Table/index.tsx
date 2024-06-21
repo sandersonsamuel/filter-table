@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Table,
@@ -9,9 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {productsDataReq} from "@/requests/productsData";
-import {useContext, useEffect, useState} from "react";
-import {ProductsContext} from "@/providers/ProductsProvider";
+import { productsDataReq } from "@/requests/productsData";
+import { useContext, useEffect, useState } from "react";
+import { ProductsContext } from "@/providers/ProductsProvider";
 
 export type Product = {
   id: string | null;
@@ -20,22 +20,25 @@ export type Product = {
 };
 
 export const Tabela = () => {
-
   const params = new URLSearchParams(window.location.search);
 
-  const {products, totalPages, limit} = useContext(ProductsContext)
+  const { products, totalPages, limit } = useContext(ProductsContext);
 
-  const id = params.get('id');
-  const name = params.get('name');
+  const id = params.get("id");
+  const name = params.get("name");
 
-  let data = products
+  let data = products;
 
   if (id) {
-    data = data.filter((product: Product) => product.id?.toLowerCase()?.includes(id.toLowerCase()))
+    data = data.filter((product: Product) =>
+      product.id?.toLowerCase()?.includes(id.toLowerCase()),
+    );
   }
 
-  if (name){
-    data = data.filter((product: Product) => product.name?.toLowerCase()?.includes(name.toLowerCase()))
+  if (name) {
+    data = data.filter((product: Product) =>
+      product.name?.toLowerCase()?.includes(name.toLowerCase()),
+    );
   }
 
   return (
